@@ -1,0 +1,50 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>ListStudentServlet</servlet-name>
+        <servlet-class>Servlet.ListStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteStudentServlet</servlet-name>
+        <servlet-class>Servlet.DeleteStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertStudentServlet</servlet-name>
+        <servlet-class>Servlet.InsertStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentServlet</servlet-name>
+        <servlet-class>Servlet.StudentServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>TestAjax</servlet-name>
+        <servlet-class>Servlet.TestAjax</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ListStudentServlet</servlet-name>
+        <url-pattern>/ListAllStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStudentServlet</servlet-name>
+        <url-pattern>/DeleteStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertStudentServlet</servlet-name>
+        <url-pattern>/InsertStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentServlet</servlet-name>
+        <!--<url-pattern>*.do</url-pattern>-->
+        <url-pattern >*.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestAjax</servlet-name>
+        <url-pattern>/TestAjax</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,130 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Archetype Created Web Application</display-name>
+    <!--配置servlet和映射-->
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>com.blackberry.servlet.RegServlet</servlet-class>
+        <!--可以指定servlet被创建的时机-->
+        <!--<load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <!--需要和某一个servlet节点的servlet-name子节点的文本节点一致-->
+        <servlet-name>RegServlet</servlet-name>
+
+        <!-- 映射具体访问的路径，/ 代表当前web应用的根目录，-->
+        <url-pattern>/RegServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>helloServlet</servlet-name>
+        <servlet-class>com.blackberry.test.helloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>helloServlet</servlet-name>
+        <url-pattern>/helloServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServletTest</servlet-name>
+        <servlet-class>com.blackberry.test.ServletTest</servlet-class>
+        <init-param>
+            <param-name>user</param-name>
+            <param-value>root</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletTest</servlet-name>
+        <url-pattern>/ServletTest</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>com.blackberry.servlet.LoginServlet</servlet-class>
+        
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+<!--
+    小练习，在web.xml中设置两个web应用的初始化参数，user,password
+    定义一个login1.html,里边定义两个请求字段：username,password,
+    发送到Demo1exServlet，创建一个Demo1exServlet,在其中获取请求的username,password
+    比对其和web.xml文件中定义的请求参数是否一致，如果一致响应hello，若不一致，想用sorry...
+    
+-->
+    <!--配置当前web应用的初始化参数-->
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>kk</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>123456</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Demo1exServlet</servlet-name>
+        <servlet-class>com.blackberry.servlet.Demo1exServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo1exServlet</servlet-name>
+        <url-pattern>/Demo1exServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet3</servlet-name>
+        <servlet-class>com.blackberry.servlet.LoginServlet3</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet3</servlet-name>
+        <url-pattern>/LoginServlet3</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ResponseServlet</servlet-name>
+        <servlet-class>com.blackberry.servlet.ResponseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResponseServlet</servlet-name>
+        <url-pattern>/ResponseServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--测试容器-->
+    <servlet>
+        <servlet-name>rongqiServlet</servlet-name>
+        <servlet-class>com.blackberry.servlet.rongqiServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>rongqiServlet</servlet-name>
+        <url-pattern>/rongqiServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--JSP内置对象config获取初始化参数的时候，需要配置一下映射-->
+    <servlet>
+        <servlet-name>helloJSP</servlet-name>
+        <jsp-file>/hello.jsp</jsp-file>
+        <init-param>
+            <param-name>test</param-name>
+            <param-value>testValue</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>helloJSP</servlet-name>
+        <url-pattern>/helloJSP</url-pattern>
+    </servlet-mapping>
+
+
+    <error-page>
+        <!--指定错误的代码，404没有指定的资源，500内部错误-->
+        <error-code>500</error-code>
+        <!--指定响应页面的位置-->
+        <location>/WEB-INF/errorPage.jsp</location>
+    </error-page>
+    <error-page>
+        <!--指定异常的类型及响应的页面-->
+        <exception-type>java.lang.ArithmeticException</exception-type>
+        <location>/WEB-INF/errorPage.jsp</location>
+    </error-page>
+
+</web-app>
