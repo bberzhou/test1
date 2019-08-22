@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //  遍历所有的a标签并绑定响应事件
+            var aTag = document.getElementsByTagName('a');
+            console.log(aTag);
+            for (var i = 0; i < aTag.length; i++) {
+                aTag[i].onclick = function () {
+                    //  新建一个XMLHttpRequest对象
+                    var xhl = new XMLHttpRequest();
+                    //  获取url
+                    var url = this.href;
+                    xhl.open('GET', url, true);
+                    xhl.send();
+                    xhl.onreadystatechange = function () {
+                        if (xhl.readyState == 4) {
+                            if (xhl.status == 200 || xhl.status == 304) {
+                                //  1。如果采用XML格式，就需要使用responseXML来获取
+                                var resultxml = xhl.responseXML;
+
+                                //  2。结果不能直接使用，必须先创建对应的节点，再把节点加入到#details中去
+
+                                //  获取节点的value
+                                var name = resultxml.getElementsByTagName('name')[0].firstChild.nodeValue;
+                                var email = resultxml.getElementsByTagName('email')[0].firstChild.nodeValue;
+                                console.log(name + email);
+                                //  创建一个a节点
+                                var aNode = document.createElement('a');
+                                //  a节点的子节点是一个文本节点
+                                aNode.appendChild(document.createTextNode(name));
+                                //  设置a节点的href的属性
+                                aNode.href = email;
+                                var aNode1 = document.createElement('h2');
+                                aNode1.appendChild(aNode);
+                                //再将a节点整个变为details的子节点
+                                var detailsNode = document.getElementById('details');
+                                //  每次添加之前就把以前的节点全部删除
+                                detailsNode.innerHTML = "";
+                                //  将aNode1加入到details节点
+                                detailsNode.appendChild(aNode1);
+                                /*
+                                    XML格式的优点：
+                                        XML是一种通用的数据格式，不必吧数据强加到定义好的格式当中，而是要为数据定义合适的标记
+
+                                     XML格式的缺点：如果文档来自服务器，就必须得保证文档含有正确的收不信息，如果文档类型不正确，那么responseXML的值就是空的
+                                        而且如果收到的XML文件比较厂，DOM解析可能会很复杂。
+                                 */
+                            }
+                        }
+
+                    };
+                    //  取消默认行为，即跳转页面
+                    return false;
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<h2>people</h2>
+<ul>
+    <li><a href="Andy.xml">Andy</a></li>
+    <li><a href="Richard.xml">Richard</a></li>
+    <li><a href="Jeremy.xml">Jeremy</a></li>
+</ul>
+<div id="details"></div>
+</body>
+</html>

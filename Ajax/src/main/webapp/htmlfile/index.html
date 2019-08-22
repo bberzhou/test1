@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //  遍历所有的a标签并绑定响应事件
+            var aTag = document.getElementsByTagName('a');
+            console.log(aTag);
+            for (var i = 0; i < aTag.length; i++) {
+                aTag[i].onclick = function () {
+                    //  新建一个XMLHttpRequest对象
+                    var xhl = new XMLHttpRequest();
+                    //  获取url
+                    var url = this.href;
+                    xhl.open('GET', url, true);
+                    xhl.send();
+                    xhl.onreadystatechange = function () {
+                        if (xhl.readyState == 4) {
+                            if (xhl.status == 200 || xhl.status == 304) {
+                                //  如果响应正常，直接将响应内容插入到页面中
+                                document.getElementById('details').innerHTML = xhl.responseText;
+                            }
+                        }
+                        /* 采用HTML传输数据
+                         优点：
+                              从服务器发送的HTML代码在浏览器端不需要使用JavaScript进行解析，并且可读性好，
+                              HTML代码块与innerHTML属性搭配，效率也比较高
+                         缺点：
+                               如果需要更新一个页面的多个部分，HTML就不合适，innerHTML 并非DOM标准
+                         */
+                    };
+                    //  取消默认行为，即跳转页面
+                    return false;
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<h2>people</h2>
+<ul>
+    <li><a href="Andy.html">Andy</a></li>
+    <li><a href="Richard.html">Richard</a></li>
+    <li><a href="Jeremy.html">Jeremy</a></li>
+</ul>
+<div id="details"></div>
+</body>
+</html>
