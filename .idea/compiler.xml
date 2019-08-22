@@ -9,6 +9,7 @@
         <module name="Ajax" />
         <module name="CRUDDemo" />
         <module name="MVCDemo" />
+        <module name="SessionAndCookie" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

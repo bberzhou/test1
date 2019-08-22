@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Ajax</artifactId>
+    <artifactId>SessionAndCookie</artifactId>
     <packaging>war</packaging>
 
-    <name>Ajax Maven Webapp</name>
+    <name>SessionAndCookie Maven Webapp</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -32,7 +32,7 @@
     </dependencies>
 
     <build>
-        <finalName>Ajax</finalName>
+        <finalName>SessionAndCookie</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>

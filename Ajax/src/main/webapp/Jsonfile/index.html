@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+      window.onload = function () {
+        //  遍历所有的a标签并绑定响应事件
+        var aTag = document.getElementsByTagName('a');
+        console.log(aTag);
+        for (var i = 0; i < aTag.length; i++) {
+          aTag[i].onclick = function () {
+            //  新建一个XMLHttpRequest对象
+            var xhl = new XMLHttpRequest();
+            //  获取url
+            var url = this.href;
+            xhl.open('GET', url, true);
+            xhl.send();
+            xhl.onreadystatechange = function () {
+              if (xhl.readyState == 4) {
+                if (xhl.status == 200 || xhl.status == 304) {
+                  //  1。如果采用JSON格式，就需要使用responseText来获取
+                  var resultxml = xhl.responseText;
+                  //  使用eval函数，将它变成一个对象
+                  var Obj = eval("(" + resultxml + ")");
+
+                  //  2。结果不能直接使用，必须先创建对应的节点，再把节点加入到#details中去
+
+                  //  从JSON对象中获取节点的value
+                  var name = Obj.person.name;
+                  var city = Obj.person.city;
+                  var email = Obj.person.email;
+                  console.log(name + email + city);
+                  var aNode1 = document.createElement('a');
+                  aNode1.appendChild(document.createTextNode(name));
+                  var h1 = document.createElement('h4');
+                  h1.appendChild(aNode1);
+                  var aNode2 = document.createElement('a');
+                  aNode2.appendChild(document.createTextNode(city));
+                  var h2 = document.createElement('h4');
+                  h2.appendChild(aNode2);
+                  var aNode3 = document.createElement('a');
+                  aNode3.appendChild(document.createTextNode(email));
+                  var h3 = document.createElement('h4');
+                  h3.appendChild(aNode3);
+
+
+                  //再将a节点整个变为details的子节点
+                  var detailsNode = document.getElementById('details');
+                  //  每次添加之前就把以前的节点全部删除
+                  detailsNode.innerHTML = "";
+                  //  将aNode1加入到details节点
+                  detailsNode.appendChild(h1);
+                  detailsNode.appendChild(h2);
+                  detailsNode.appendChild(h3);
+                  /*
+                    使用JSON不需要从服务器端发送含有特定内容类型的首部信息
+                    缺点是语法过于严谨，代码不易读，eval函数存在风险
+                   */
+                }
+              }
+
+            };
+            //  取消默认行为，即跳转页面
+            return false;
+          }
+        }
+      }
+
+    </script>
+</head>
+<body>
+<h2>people</h2>
+<ul>
+    <li><a href="Andy.json">Andy</a></li>
+    <li><a href="Richard.json">Richard</a></li>
+    <li><a href="Jeremy.json">Jeremy</a></li>
+</ul>
+<div id="details"></div>
+</body>
+</html>
