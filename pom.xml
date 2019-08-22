@@ -10,9 +10,8 @@
     <modules>
         <module>MVCDemo</module>
         <module>CRUDDemo</module>
-        <module>AjaxDemo</module>
-        <module>AjaxDemo</module>
-        <module>SSM</module>
+        <module>SessionAndCookie</module>
+        <module>Ajax</module>
     </modules>
     <packaging>pom</packaging>
 

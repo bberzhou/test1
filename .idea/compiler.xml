@@ -6,8 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Ajax" />
         <module name="CRUDDemo" />
         <module name="MVCDemo" />
+        <module name="SessionAndCookie" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
